@@ -3,16 +3,16 @@
 #Purpose: gets all DNS records for a certian AD stie(i.e UW1) and retroactivley adds PTR records for those hosts
 
 #DNS zone to search
-$ZoneName = "2tor.net"
+$ZoneName = "myzone.com"
 #DC to use
-$DC = "UW1DC01"
+$DC = "MY-DC-NAME"
 #domain to append to PTR domain name
-$Domain = ".2tor.net"
-#Hostnames to look for
-$Filter = "UW1*"
+$Domain = ".myzone.com"
+#Hostnames to look for based on naming convention (i.e servers in us-east-1 use the prefix UE1) 
+$Filter = "UE*"
 #Reverse zone being updated
-$ReverseZone = "72.10.in-addr.arpa"
-#Get all records like filter in 2tor zone
+$ReverseZone = "reverse.zone.in-addr.arpa"
+#Gets all records like filter in given search zone
 $Collection = Get-DnsServerResourceRecord -ZoneName $Zone -RRType A -ComputerName $DC |
 Where {($_.Hostname -ne '@') -and ($_.Hostname -ne 'ForestDnsZones') -and ($_.Hostname -ne 'DomainDnsZones') -and $_.Hostname -like $Filter };
 Write-Host "PTR Records will be created for the following records:"

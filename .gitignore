@@ -1,0 +1,2 @@
+#ignore any data outputed by scripts
+**/outputs/*
