@@ -2,3 +2,4 @@
 **/private/*
 #ignore any private 2U data outputed by scripts
 **/outputs/*
+.DS_Store
